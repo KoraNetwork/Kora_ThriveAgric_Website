@@ -1,0 +1,21 @@
+.navigation {
+  background-color: #276196;
+  color: white !important;
+
+  .container {
+    justify-content: center;
+  }
+
+  .items {
+    flex-direction: row;
+    a {
+      color: white;
+    }
+  }
+}
+
+.vertical-line {
+  height: 20px;
+  border: 0.5px solid ;
+  margin: 0px 15px;
+}
