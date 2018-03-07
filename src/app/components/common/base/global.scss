@@ -42,3 +42,24 @@ body {
 .none {
   display: none;
 }
+
+.form {
+  .form-group {
+    width: auto
+  }
+  .form-control {
+    margin: 0;
+  }
+  .control-label {
+    margin: 0;
+  }
+  .error {
+    border-color: #da2026;
+    &::placeholder {
+      color: #da2026;
+    }
+  }
+  label {
+    color: #da2026;
+  }
+}

@@ -1,17 +1,22 @@
 import React, { PropTypes } from 'react';
+import {connect} from 'react-redux';
 import Header from './common/Header';
 import Navigation from './common/navigation'
 
-function App({ children }) {
-  return (
-    <div className="container">
-      <Header />
-      <Navigation />
-      {children}
-    </div>
-  );
+class App extends React.Component {
+
+  render() {
+    const { children, currentUser } = this.props;
+    return (
+      <div className="container">
+        <Header />
+        { currentUser.id ? <Navigation /> : null }
+        { children }
+      </div>
+    );
+  }
 }
 
 App.propTypes = { children: PropTypes.object };
 
-export default App;
+export default connect(state => state)(App);

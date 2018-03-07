@@ -4,7 +4,7 @@ import { browserHistory } from 'react-router';
 import store from '../store'
 const { dispatch } = store;
 
-import { login as loginRequest, profile as checkRequest } from '../services/sessions';
+import { login as loginRequest, profile as checkRequest, updatePassword } from '../services/sessions';
 
 export function login(payload) {
   loginRequest(payload)
