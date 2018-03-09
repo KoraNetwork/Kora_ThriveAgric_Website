@@ -5,8 +5,10 @@ import {
   ControlLabel,
   FormControl,
   Button,
-  Row
+  Row,
 } from 'react-bootstrap'
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import { faEye } from '@fortawesome/fontawesome-free-solid'
 
 import { login } from '../../actions/sessions'
 
@@ -14,7 +16,12 @@ class Login extends React.Component {
 
   state = {
     emailAddress: '',
-    password: ''
+    password: '',
+    passwordType: true
+  };
+
+   togglePassword = () => {
+    this.setState({ passwordType: !this.state.passwordType })
   };
 
   handleChange = e => {
@@ -37,7 +44,10 @@ class Login extends React.Component {
             <FormGroup>
               <h2>ENTER YOUR LOGIN <br/> CREDENTIALS</h2>
               <FormControl type="text" name="emailAddress" placeholder="Email" onChange={this.handleChange}/>
-              <FormControl type="password" name="password" placeholder="Password" onChange={this.handleChange}/>
+                <FormControl type={this.state.passwordType ? "password" : "text"} name="password" placeholder="Password" onChange={this.handleChange}/>
+                <div className="toggle-password">
+                  <FontAwesomeIcon icon={faEye} onMouseDown={this.togglePassword} onMouseUp={this.togglePassword}/>
+                </div>
             </FormGroup>
             <Button type="submit">LOGIN</Button>
           </form>
