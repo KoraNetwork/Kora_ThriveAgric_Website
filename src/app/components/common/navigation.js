@@ -16,19 +16,19 @@ function Navigation() {
   return (
     <Navbar className='navigation'>
       <Nav className="items">
-        <NavItem href="/transactions">TRANSACTIONS</NavItem>
+        <Link to="/transactions">TRANSACTIONS</Link>
         <div className="vertical-line" />
-        <NavItem href="/farmers">FARMER MANAGEMENT</NavItem>
+        <Link to="/farmers">FARMER MANAGEMENT</Link>
         <div className="vertical-line" />
-        <NavItem href="/agents">AGENT MANAGEMENT</NavItem>
+        <Link to="/agents">AGENT MANAGEMENT</Link>
         <div className="vertical-line" />
-        <NavItem href="/users">USERS</NavItem>
+        <Link to="/users">USERS</Link>
         <div className="vertical-line" />
-        <NavItem href="/banck_accounts">BANK ACCONTS</NavItem>
+        <Link to="/banck_accounts">BANK ACCONTS</Link>
         <div className="vertical-line" />
-        <NavItem href="/money_transfer">MONEY TRANSFER</NavItem>
+        <Link to="/money_transfer">MONEY TRANSFER</Link>
         <div className="vertical-line" />
-        <NavItem href="/payroll">PAYROLL</NavItem>
+        <Link to="/payroll">PAYROLL</Link>
       </Nav>
     </Navbar>
   )

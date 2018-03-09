@@ -8,6 +8,8 @@ import Login from './components/login/index';
 import ChangePass from './components/change-password';
 
 import Transactions from './components/transaction/index';
+import Transaction from './components/transaction/show';
+
 import Farmers from './components/farmer/index';
 import Agents from './components/agent/index';
 import Users from './components/user/index';
@@ -24,6 +26,7 @@ ReactDOM.render(
         <Route path="/login" component={Login} />
         <Route path="/change-password" component={ChangePass} />
         <Route path="/transactions" component={Transactions} />
+        <Route path="/transaction/:id" component={Transaction} />
         <Route path="/farmers" component={Farmers} />
         <Route path="/agents" component={Agents} />
         <Route path="/users" component={Users} />
