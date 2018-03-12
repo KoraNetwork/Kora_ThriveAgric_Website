@@ -21,8 +21,12 @@ const { dispatch } = store;
 export function fetchAll() {
   const { filters } = store.getState().farmers;
 
-  getFarmers(filters)
-    .success(res => dispatch({ type: SET, farmers: res.users || [], count: res.count }));
+  if(window.getFarmersTimer) clearTimeout(window.getFarmersTimer);
+
+  window.getFarmersTimer = setTimeout(function () {
+    getFarmers(filters)
+      .success(res => dispatch({ type: SET, farmers: res.users || [], count: res.count }));
+  }, 400)
 }
 
 export function updateFilters(filters = []) {

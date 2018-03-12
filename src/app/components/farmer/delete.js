@@ -6,13 +6,17 @@ import {
   Button
 } from 'reactstrap'
 
-import {deleteFarmer, fetchOne} from './actions';
+import {deleteFarmer, fetchOne, clearSelected} from './actions';
 
 class FarmerDelete extends React.Component {
 
   componentDidMount() {
     const { params: { id } } = this.props;
     fetchOne(id)
+  }
+
+  componentWillUnmount() {
+    clearSelected()
   }
 
   render() {

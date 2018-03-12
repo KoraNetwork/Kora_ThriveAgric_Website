@@ -1,6 +1,11 @@
 const initialState = {
   items: [],
-  filters: { page: 1, perPage: 10, role: 'farmer' },
+  filters: {
+    page: 1,
+    perPage: 10,
+    role: 'farmer',
+    emailAddress: ''
+  },
   selected: {
     id: null,
     firstName: '',

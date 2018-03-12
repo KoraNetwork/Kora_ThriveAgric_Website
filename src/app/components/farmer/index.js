@@ -26,7 +26,9 @@ class Farmers extends React.Component {
         <div className="top-block">
           <h2>FARMERS MANAGEMENT</h2>
           <div className="search-block">
-            <Input className="search-input"/>
+            <Input className="search-input"
+                   value={farmers.filters.emailAddress}
+                   onChange={e => farmersActions.updateFilters([{ emailAddress: e.target.value }])} />
             <Button>SEARCH</Button>
             <Button>IMPORT FARMERS</Button>
             <Button onClick={router.push.bind(this, 'farmers/new')}>ADD FARMER</Button>
