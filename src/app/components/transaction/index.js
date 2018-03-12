@@ -4,7 +4,7 @@ import {
   FormControl,
   Button,
   Table
-} from 'react-bootstrap'
+} from 'reactstrap'
 
 
 class Transactions extends React.Component {

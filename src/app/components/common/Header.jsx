@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux'
 import { Link } from 'react-router';
-import { Row, Button } from 'react-bootstrap'
+import { Row, Button } from 'reactstrap'
 import Logo from './kora_logo.svg';
 
 import { logout } from '../../actions/sessions'
@@ -17,10 +17,10 @@ class Header extends React.Component {
         {currentUser.id && (
           <div className="current-user">
             <div className="full-name">
-              <p>{currentUser.fullName}</p>
+              <p>{`${currentUser.firstName} ${currentUser.lastName}`}</p>
               <div className="vertical-line" />
               <p>
-                <Link to="change-password">Change Password</Link>
+                <Link to="/change-password">Change Password</Link>
               </p>
             </div>
             <Button className="logout" onClick={logout}>LOGOUT</Button>

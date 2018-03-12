@@ -6,7 +6,7 @@ import {
   Navbar,
   Nav,
   NavItem,
-} from 'react-bootstrap'
+} from 'reactstrap'
 import Logo from './kora_logo.svg';
 
 

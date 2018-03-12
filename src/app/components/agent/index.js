@@ -4,11 +4,9 @@ import {
   FormControl,
   Button,
   Table
-} from 'react-bootstrap'
-
+} from 'reactstrap'
 
 class Agents extends React.Component {
-
 
   render() {
     return(
@@ -23,7 +21,7 @@ class Agents extends React.Component {
           </div>
         </div>
 
-        <Table responsive striped>
+        <Table>
           <thead>
             <tr>
               <th>Agent ID</th>

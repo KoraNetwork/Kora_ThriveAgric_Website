@@ -1,25 +1,35 @@
 import React from 'react';
 import { connect } from 'react-redux'
+import {Link} from 'react-router'
 import {
-  FormControl,
+  FormText,
   Button,
   Table
-} from 'react-bootstrap'
+} from 'reactstrap'
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/fontawesome-free-solid'
 
+import SortableTH from '../common/sortableTH'
+import * as farmersActions from './actions';
 
 class Farmers extends React.Component {
 
+  componentDidMount() {
+    farmersActions.fetch()
+  }
 
   render() {
+    const { router, farmers }= this.props;
+
     return(
       <div className="layout">
         <div className="top-block">
-          <h2>FARMERS MENAGEMENT</h2>
+          <h2>FARMERS MANAGEMENT</h2>
           <div className="search-block">
-            <FormControl className="search-input"/>
+            <FormText className="search-input"/>
             <Button>SEARCH</Button>
             <Button>IMPORT FARMERS</Button>
-            <Button>ADD FARMER</Button>
+            <Button onClick={router.push.bind(this, 'farmers/new')}>ADD FARMER</Button>
           </div>
         </div>
 
@@ -27,8 +37,8 @@ class Farmers extends React.Component {
           <thead>
             <tr>
               <th>Farmer ID</th>
-              <th>Name</th>
-              <th>Fone Number</th>
+              <th><SortableTH update={farmersActions.updateFilters} column='fullName'>Name</SortableTH></th>
+              <th>Phone Number</th>
               <th>Status</th>
               <th>Payroll Status</th>
               <th>Address </th>
@@ -36,15 +46,21 @@ class Farmers extends React.Component {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
+          {
+            farmers.items.map(farmer => (
+              <tr key={farmer.id}>
+                <td>{farmer.id}</td>
+                <td>{farmer.fullName}</td>
+                <td>{farmer.phoneNumber}</td>
+                <td>{farmer.status}</td>
+                <td>{farmer.payrollStatus}</td>
+                <td>{farmer.address}</td>
+                <td>
+                  <Link to={`/farmers/${farmer.id}`}><FontAwesomeIcon icon={faSearch} /></Link>
+                </td>
+              </tr>
+            ))
+          }
           </tbody>
         </Table>
       </div>

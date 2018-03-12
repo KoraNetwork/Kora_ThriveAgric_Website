@@ -11,10 +11,12 @@ import Transactions from './components/transaction/index';
 import Transaction from './components/transaction/show';
 
 import Farmers from './components/farmer/index';
+import FarmerForm from './components/farmer/form';
 import Agents from './components/agent/index';
 import Users from './components/user/index';
 
 import './components/bundle.scss';
+import './utils';
 import store from './store'
 
 import {check as checkSession} from './actions/sessions';
@@ -27,7 +29,11 @@ ReactDOM.render(
         <Route path="/change-password" component={ChangePass} />
         <Route path="/transactions" component={Transactions} />
         <Route path="/transaction/:id" component={Transaction} />
-        <Route path="/farmers" component={Farmers} />
+        <Route path="/farmers">
+          <IndexRoute name="farmers" component={Farmers} />
+          <Route name="farmers-new"  path="new" component={FarmerForm} />
+          <Route name="farmers-edit" path=":id" component={FarmerForm} />
+        </Route>
         <Route path="/agents" component={Agents} />
         <Route path="/users" component={Users} />
       </Route>

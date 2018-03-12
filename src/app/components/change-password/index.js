@@ -2,10 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux'
 import {
   FormGroup,
-  FormControl,
-  ControlLabel,
-  Button
-} from 'react-bootstrap'
+  Button,
+  Label,
+  Input
+} from 'reactstrap'
 
 import { updatePassword } from '../../services/sessions'
 
@@ -87,11 +87,11 @@ class ChangePassword extends React.Component {
 
               <FormGroup>
                 {errors['currentPassword'] && (
-                  <ControlLabel>
+                  <Label>
                     {errors['currentPassword']}
-                  </ControlLabel>
+                  </Label>
                 )}
-                <FormControl
+                <Input
                   type="password"
                   name="currentPassword"
                   placeholder="Your current password"
@@ -101,11 +101,11 @@ class ChangePassword extends React.Component {
 
               <FormGroup>
                 {errors['newPassword'] && (
-                  <ControlLabel>
+                  <Label>
                   {errors['newPassword']}
-                  </ControlLabel>
+                  </Label>
                 )}
-                <FormControl
+                <Input
                   type="password"
                   name="newPassword"
                   placeholder="Please enter new password"
@@ -115,11 +115,11 @@ class ChangePassword extends React.Component {
 
               <FormGroup>
                 {errors['confirmNewPassword'] && (
-                  <ControlLabel>
+                  <Label>
                     {errors['confirmNewPassword']}
-                  </ControlLabel>
+                  </Label>
                 )}
-                <FormControl
+                <Input
                   type="password"
                   name="confirmNewPassword"
                   placeholder="Confirm new password"

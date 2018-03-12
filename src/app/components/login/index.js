@@ -2,11 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux'
 import {
   FormGroup,
-  ControlLabel,
-  FormControl,
+  Input,
   Button,
   Row,
-} from 'react-bootstrap'
+} from 'reactstrap'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { faEye } from '@fortawesome/fontawesome-free-solid'
 
@@ -43,8 +42,8 @@ class Login extends React.Component {
           <form onSubmit={this.handleSubmit}>
             <FormGroup>
               <h2>ENTER YOUR LOGIN <br/> CREDENTIALS</h2>
-              <FormControl type="text" name="emailAddress" placeholder="Email" onChange={this.handleChange}/>
-                <FormControl type={this.state.passwordType ? "password" : "text"} name="password" placeholder="Password" onChange={this.handleChange}/>
+              <Input type="text" name="emailAddress" placeholder="Email" onChange={this.handleChange}/>
+              <Input type={this.state.passwordType ? "password" : "text"} name="password" placeholder="Password" onChange={this.handleChange}/>
                 <div className="toggle-password">
                   <FontAwesomeIcon icon={faEye} onMouseDown={this.togglePassword} onMouseUp={this.togglePassword}/>
                 </div>
