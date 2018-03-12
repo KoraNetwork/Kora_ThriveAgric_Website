@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import {
-  FormControl,
+  Input,
   Button,
   Table
 } from 'reactstrap'
@@ -16,7 +16,7 @@ class Users extends React.Component {
         <div className="top-block">
           <h2>USERS MENAGEMENT</h2>
           <div className="search-block">
-            <FormControl className="search-input"/>
+            <Input className="search-input"/>
             <Button>SEARCH</Button>
             <Button>ADD USER</Button>
           </div>

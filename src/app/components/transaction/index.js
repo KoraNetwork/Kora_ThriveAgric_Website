@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import {
-  FormControl,
+  Input,
   Button,
   Table
 } from 'reactstrap'
@@ -16,11 +16,11 @@ class Transactions extends React.Component {
         <div className="top-block">
           <h2>TRANSACTIONS HISTORI</h2>
           <div className="search-block">
-            <FormControl className="search-input"/>
+            <Input className="search-input"/>
             <Button>SEARCH</Button>
           </div>
         </div>
-        
+
         <Table responsive striped>
           <thead>
             <tr>

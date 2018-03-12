@@ -4,12 +4,12 @@ import {Link} from 'react-router'
 import {
   Input,
   Button,
-  Table
+  Table,
 } from 'reactstrap'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/fontawesome-free-solid'
+import { faSearch } from '@fortawesome/fontawesome-free-solid';
 
-import SortableTH from '../common/sortableTH'
+import SortableTH from '../common/sortableTH';
 import * as farmersActions from './actions';
 
 class Farmers extends React.Component {
@@ -52,7 +52,7 @@ class Farmers extends React.Component {
             farmers.items.map(farmer => (
               <tr key={farmer.id}>
                 <td>{farmer.id}</td>
-                <td>{farmer.firstName}</td>
+                <td>{farmer.firstName + " " + farmer.lastName}</td>
                 <td>{farmer.phoneNumber}</td>
                 <td>{farmer.status}</td>
                 <td>{farmer.payrollStatus}</td>

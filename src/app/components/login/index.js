@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
+import { Link } from 'react-router';
 import {
   FormGroup,
   Input,
@@ -16,10 +17,10 @@ class Login extends React.Component {
   state = {
     emailAddress: '',
     password: '',
-    passwordType: true
+    passwordType: true,
   };
 
-   togglePassword = () => {
+  togglePassword = () => {
     this.setState({ passwordType: !this.state.passwordType })
   };
 
@@ -29,10 +30,13 @@ class Login extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    login(this.state)
+    login(this.state);
   };
 
   render() {
+
+    const { currentUser } = this.props;
+
     return(
       <div className="login-page">
         <div className="logo-block">
@@ -43,12 +47,15 @@ class Login extends React.Component {
             <FormGroup>
               <h2>ENTER YOUR LOGIN <br/> CREDENTIALS</h2>
               <Input type="text" name="emailAddress" placeholder="Email" onChange={this.handleChange}/>
+              <div className={currentUser.errors ? "error" : "none"}>Invalid email and password combination</div>
               <Input type={this.state.passwordType ? "password" : "text"} name="password" placeholder="Password" onChange={this.handleChange}/>
                 <div className="toggle-password">
                   <FontAwesomeIcon icon={faEye} onMouseDown={this.togglePassword} onMouseUp={this.togglePassword}/>
                 </div>
             </FormGroup>
             <Button type="submit">LOGIN</Button>
+            <br />
+            <Link to="/forgot_password">Forgot Password?</Link>
           </form>
         </div>
       </div>

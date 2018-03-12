@@ -4,6 +4,7 @@ const initialState = {
   fullName: '',
   password: '',
   passwordConfirmation: '',
+  errors: '',
 };
 
 export default function (state = initialState, action) {
@@ -14,6 +15,9 @@ export default function (state = initialState, action) {
 
     case 'USER/CLEAR':
       return initialState;
+
+    case 'USER/ERROR':
+      return {...state, errors: action.error};
 
     default:
       return state

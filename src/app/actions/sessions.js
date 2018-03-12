@@ -14,6 +14,9 @@ export function login(payload) {
       dispatch({ type: 'USER/SET', user: res });
       browserHistory.push('/transactions')
     })
+    .error(res => {
+      dispatch({type: 'USER/ERROR', error: "Invalid email and password combination"})
+    })
 }
 
 export function logout() {
