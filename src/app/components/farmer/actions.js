@@ -17,7 +17,7 @@ import {
 
 const { dispatch } = store;
 
-export function fetch() {
+export function fetchAll() {
   const { filters } = store.getState().farmers;
 
   getFarmers(filters)
@@ -28,7 +28,9 @@ export function updateFilters(filters = []) {
   let hash = {};
   filters.forEach(item => Object.keys(item).forEach(key => hash[key] = item[key]));
 
-  dispatch({ type: UPDATE_FILTERS, filters: { ...hash, page: 1 }})
+  Promise
+    .resolve(dispatch({ type: UPDATE_FILTERS, filters: { ...hash, page: 1 }}))
+    .then(fetchAll)
 }
 
 export function fetchOne(id) {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import {
-  FormControl,
+  Input,
   Button,
   Table
 } from 'reactstrap'
@@ -14,7 +14,7 @@ class Agents extends React.Component {
         <div className="top-block">
           <h2>AGENT MENAGEMENT</h2>
           <div className="search-block">
-            <FormControl className="search-input"/>
+            <Input className="search-input"/>
             <Button>SEARCH</Button>
             <Button>IMPORT AGENTS</Button>
             <Button>ADD AGENT</Button>

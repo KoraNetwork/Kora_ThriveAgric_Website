@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux'
 import {Link} from 'react-router'
 import {
-  FormText,
+  Input,
   Button,
   Table
 } from 'reactstrap'
@@ -15,7 +15,7 @@ import * as farmersActions from './actions';
 class Farmers extends React.Component {
 
   componentDidMount() {
-    farmersActions.fetch()
+    farmersActions.fetchAll()
   }
 
   render() {
@@ -26,7 +26,7 @@ class Farmers extends React.Component {
         <div className="top-block">
           <h2>FARMERS MANAGEMENT</h2>
           <div className="search-block">
-            <FormText className="search-input"/>
+            <Input className="search-input"/>
             <Button>SEARCH</Button>
             <Button>IMPORT FARMERS</Button>
             <Button onClick={router.push.bind(this, 'farmers/new')}>ADD FARMER</Button>
@@ -37,8 +37,8 @@ class Farmers extends React.Component {
           <thead>
             <tr>
               <th>Farmer ID</th>
-              <th><SortableTH update={farmersActions.updateFilters} column='fullName'>Name</SortableTH></th>
-              <th>Phone Number</th>
+              <th><SortableTH update={farmersActions.updateFilters} column='firstName'>First Name</SortableTH></th>
+              <th><SortableTH update={farmersActions.updateFilters} column='phoneNumber'>Phone Number</SortableTH></th>
               <th>Status</th>
               <th>Payroll Status</th>
               <th>Address </th>
@@ -50,7 +50,7 @@ class Farmers extends React.Component {
             farmers.items.map(farmer => (
               <tr key={farmer.id}>
                 <td>{farmer.id}</td>
-                <td>{farmer.fullName}</td>
+                <td>{farmer.firstName}</td>
                 <td>{farmer.phoneNumber}</td>
                 <td>{farmer.status}</td>
                 <td>{farmer.payrollStatus}</td>

@@ -5,7 +5,7 @@ export function get(filters = {}) {
   let url = `${apiUrl}/users?`;
 
   for (let key in filters) {
-    url += `${key}=${filters[key]}&`
+    if(filters[key]) url += `${key}=${filters[key]}&`
   }
 
   return http.get({ url })
