@@ -32,7 +32,7 @@ class FarmerForm extends React.Component {
   }
 
   render() {
-    const { global: {isLoading}, farmers: { selected: farmer } } = this.props;
+    const { global: {isLoading}, farmers: { selected: farmer }, router } = this.props;
 
     return(
       <div className="layout">
@@ -47,7 +47,7 @@ class FarmerForm extends React.Component {
               </Col>
             </Row>
           )}
-          <Row style={{marginTop: 30}}>
+          <Row style={{margin: '30 auto'}}>
             <Col {...leftColProps}>
               <Label>Email address</Label>
             </Col>
@@ -127,6 +127,16 @@ class FarmerForm extends React.Component {
               </FormGroup>
             </Col>
           </Row>
+          <Row>
+            <Col {...leftColProps}>
+              <Button color="danger" type="button" onClick={router.push.bind(this, `/farmers/${farmer.id}/delete`)}>DELETE FARMER</Button>
+            </Col>
+            <Col md={3}>
+              <FormGroup>
+
+              </FormGroup>
+            </Col>
+          </Row>
           {/*<Row>*/}
             {/*<Col {...leftColProps}>*/}
               {/*<Label>securityQuestions</Label>*/}
@@ -138,7 +148,7 @@ class FarmerForm extends React.Component {
             {/*</Col>*/}
           {/*</Row>*/}
           <Row style={{justifyContent:'center'}}>
-            <Button type="submit">SUBMIT</Button>
+            <Button type="submit" color="primary">SUBMIT</Button>
           </Row>
         </form>
       </div>

@@ -10,9 +10,10 @@ import {
   CLEAR_SELECTED
 } from '../../reducers/farmers'
 import {
-  get as getFarmers,
+  get    as getFarmers,
   getOne as getOneFarmer,
-  upsert as upsertFarmer
+  upsert as upsertFarmer,
+  destroy as destroyFarmer
 } from '../../services/farmers';
 
 const { dispatch } = store;
@@ -60,6 +61,11 @@ export function submitFarmer(e) {
 
 export function clearSelected() {
   dispatch({ type: CLEAR_SELECTED });
+}
+
+export function deleteFarmer(id) {
+  destroyFarmer(id)
+    .success(res => browserHistory.push('/farmers'))
 }
 
 const validateFarmer = farmer => {

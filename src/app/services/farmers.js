@@ -38,3 +38,9 @@ export function getOne(id) {
 
   return http.get({ url })
 }
+
+export function destroy(id) {
+  const url = `${apiUrl}/users/${id}`;
+
+  return http.delete({ url })
+}

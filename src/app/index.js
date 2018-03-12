@@ -12,6 +12,7 @@ import Transaction from './components/transaction/show';
 
 import Farmers from './components/farmer/index';
 import FarmerForm from './components/farmer/form';
+import FarmerDelete from './components/farmer/delete';
 import Agents from './components/agent/index';
 import Users from './components/user/index';
 
@@ -31,8 +32,9 @@ ReactDOM.render(
         <Route path="/transaction/:id" component={Transaction} />
         <Route path="/farmers">
           <IndexRoute name="farmers" component={Farmers} />
-          <Route name="farmers-new"  path="new" component={FarmerForm} />
-          <Route name="farmers-edit" path=":id" component={FarmerForm} />
+          <Route name="farmers-new"    path="new"        component={FarmerForm} />
+          <Route name="farmers-edit"   path=":id"        component={FarmerForm} />
+          <Route name="farmers-delete" path=":id/delete" component={FarmerDelete} />
         </Route>
         <Route path="/agents" component={Agents} />
         <Route path="/users" component={Users} />
