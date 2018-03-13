@@ -9,6 +9,12 @@ import {
 
 import { updatePassword } from '../../services/sessions'
 
+const disableCopyPaste = {
+  onCopy: e => e.preventDefault(),
+  onCut: e => e.preventDefault(),
+  onPaste: e => e.preventDefault()
+};
+
 class ChangePassword extends React.Component {
 
   state = {
@@ -35,6 +41,11 @@ class ChangePassword extends React.Component {
 
     if(!newPassword) {
       errors.newPassword = '*required';
+      hasErrors = true
+    }
+
+    if(newPassword && !newPassword.isValidPassword()) {
+      errors.newPassword = 'Password must contain:\n• at least 8 characters\n• at least one upper and one lower character\n• at least one number and special character\n(such as _*&^%$#@!-.<>?/)';
       hasErrors = true
     }
 
@@ -96,12 +107,13 @@ class ChangePassword extends React.Component {
                   name="currentPassword"
                   placeholder="Your current password"
                   className={ errors['currentPassword'] ? 'error' : '' }
-                  onChange={this.handleChange} />
+                  onChange={this.handleChange}
+                  {...disableCopyPaste} />
               </FormGroup>
 
               <FormGroup>
                 {errors['newPassword'] && (
-                  <Label className="error">
+                  <Label className="error" style={{whiteSpace: 'pre-wrap',textAlign: 'left'}}>
                   {errors['newPassword']}
                   </Label>
                 )}
@@ -110,7 +122,8 @@ class ChangePassword extends React.Component {
                   name="newPassword"
                   placeholder="Please enter new password"
                   className={ errors['newPassword'] ? 'error' : '' }
-                  onChange={this.handleChange} />
+                  onChange={this.handleChange}
+                  {...disableCopyPaste}/>
               </FormGroup>
 
               <FormGroup>
@@ -124,7 +137,8 @@ class ChangePassword extends React.Component {
                   name="confirmNewPassword"
                   placeholder="Confirm new password"
                   className={ errors['confirmNewPassword'] ? 'error' : '' }
-                  onChange={this.handleChange} />
+                  onChange={this.handleChange}
+                  {...disableCopyPaste}/>
               </FormGroup>
             </FormGroup>
             <Button type="submit" color="primary" disabled={objectHasAnyProps(errors)} >CHANGE</Button>
