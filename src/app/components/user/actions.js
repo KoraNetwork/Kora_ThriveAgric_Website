@@ -8,21 +8,21 @@ import {
   SET_VALIDATION_ERRORS,
   HANDLE_CHANGE,
   CLEAR_SELECTED
-} from '../../reducers/agents'
+} from '../../reducers/users'
 import {
-  get as getAgents,
-  getOne as getOneAgent,
-  upsert as upsertAgent,
-  destroy as destroyAgent
-} from '../../services/agents';
+  get as getUsers,
+  getOne as getOneUser,
+  upsert as upsertUser,
+  destroy as destroyUser
+} from '../../services/users';
 
 const { dispatch } = store;
 
 export function fetch() {
-  const { filters } = store.getState().agents;
+  const { filters } = store.getState().users;
 
-  getAgents(filters)
-    .success(res => dispatch({ type: SET, agents: res.users || [], count: res.count }));
+  getUsers(filters)
+    .success(res => dispatch({ type: SET, users: res.users || [], count: res.count }));
 }
 
 export function updateFilters(filters = []) {
@@ -33,8 +33,8 @@ export function updateFilters(filters = []) {
 }
 
 export function fetchOne(id) {
-  getOneAgent(id)
-    .success(res => dispatch({ type: SET_SELECTED, agent: res }))
+  getOneUser(id)
+    .success(res => dispatch({ type: SET_SELECTED, user: res }))
 }
 
 export function handleChange(event) {
@@ -43,50 +43,42 @@ export function handleChange(event) {
   dispatch({ type: HANDLE_CHANGE, valueToChange })
 }
 
-export function submitAgent(e) {
+export function submitUser(e) {
   e.preventDefault();
-  const { selected: agent } = store.getState().agents;
+  const { selected: user } = store.getState().users;
 
-  let hasErrors = validateAgent(agent);
+  let hasErrors = validateUser(user);
 
   if (hasErrors) {
     return
   }
 
-  upsertAgent(agent)
-    .success(res => browserHistory.push('/agents'))
+  upsertUser(user)
+    .success(res => browserHistory.push('/users'))
 }
 
 export function clearSelected() {
   dispatch({ type: CLEAR_SELECTED });
 }
 
-export function deleteAgent(id) {
-  destroyAgent(id)
-    .success(res => browserHistory.push('/agents'))
+export function deleteUser(id) {
+  destroyUser(id)
+    .success(res => browserHistory.push('/users'))
 }
 
-const validateAgent = agent => {
+const validateUser = user => {
   let errors = {};
   let hasErrors = false;
 
-  if (!agent.emailAddress) {
+  if (!user.emailAddress) {
     errors.emailAddress = 'is required';
     hasErrors = true
   }
-  if (!agent.phoneNumber) {
-    errors.phoneNumber = 'is required';
-    hasErrors = true
-  }
-  if (agent.emailAddress && !agent.emailAddress.isEmail()) {
+  if (user.emailAddress && !user.emailAddress.isEmail()) {
     errors.emailAddress = 'is not a valid email';
     hasErrors = true
   }
-  if (agent.phoneNumber && !agent.phoneNumber.isValidPhone()) {
-    errors.phoneNumber = 'is not a valid phone number';
-    hasErrors = true
-  }
-  if (!agent.firstName) {
+  if (!user.firstName) {
     errors.firstName = 'is required';
     hasErrors = true
   }

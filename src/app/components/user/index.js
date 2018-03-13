@@ -1,16 +1,28 @@
 import React from 'react';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+import {Link} from 'react-router';
 import {
   Input,
   Button,
   Table
-} from 'reactstrap'
+} from 'reactstrap';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import { faPencilAlt, faTrash } from '@fortawesome/fontawesome-free-solid';
+
+import SortableTH from '../common/sortableTH';
+import * as usersActions from './actions';
 
 
 class Users extends React.Component {
 
+  componentDidMount() {
+    usersActions.fetch()
+  }
 
   render() {
+
+    const { router, users }= this.props;
+
     return(
       <div className="layout">
         <div className="top-block">
@@ -18,7 +30,7 @@ class Users extends React.Component {
           <div className="search-block">
             <Input className="search-input"/>
             <Button>SEARCH</Button>
-            <Button>ADD USER</Button>
+            <Button onClick={router.push.bind(this, 'users/new')}>ADD USER</Button>
           </div>
         </div>
 
@@ -33,13 +45,20 @@ class Users extends React.Component {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
+            {
+              users.items.map(user => (
+                <tr key={user.id}>
+                  <td>{user.firstName}</td>
+                  <td>{user.lastName}</td>
+                  <td>{user.emailAddress}</td>
+                  <td>{user.type}</td>
+                  <td>
+                    <Link style={{margin: 5}} to={`/users/${user.id}`}><FontAwesomeIcon icon={faPencilAlt} /></Link>
+                    <Link style={{margin: 5}} to={`/users/${user.id}/delete`}><FontAwesomeIcon icon={faTrash} /></Link>
+                  </td>
+                </tr>
+              ))
+            }
           </tbody>
         </Table>
       </div>

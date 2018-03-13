@@ -32,7 +32,7 @@ class AgentForm extends React.Component {
   }
 
   render() {
-    const { global: {isLoading}, agents: { selected: agent } } = this.props;
+    const { global: {isLoading}, agents: { selected: agent }, router } = this.props;
 
     return(
       <div className="layout">
@@ -174,6 +174,16 @@ class AgentForm extends React.Component {
             <Col md={3}>
               <FormGroup>
                 <Input name="agentStatus" value={agent.agentStatus} onChange={handleChange} className={agent.errors['agentStatus'] ? 'error' : ''} />
+              </FormGroup>
+            </Col>
+          </Row>
+          <Row>
+            <Col {...leftColProps}>
+              <Button color="danger" type="button" onClick={router.push.bind(this, `/agents/${agent.id}/delete`)}>DELETE AGENT</Button>
+            </Col>
+            <Col md={3}>
+              <FormGroup>
+
               </FormGroup>
             </Col>
           </Row>

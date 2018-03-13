@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import { Link } from 'react-router';
 import { Row, Button } from 'reactstrap'
 import Logo from './kora_logo.svg';
+import { browserHistory } from 'react-router';
 
 import { logout } from '../../actions/sessions'
 

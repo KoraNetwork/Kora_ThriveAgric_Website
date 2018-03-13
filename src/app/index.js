@@ -14,9 +14,14 @@ import Transaction from './components/transaction/show';
 import Farmers from './components/farmer/index';
 import FarmerForm from './components/farmer/form';
 import FarmerDelete from './components/farmer/delete';
+
 import Agents from './components/agent/index';
 import AgentForm from './components/agent/form';
+import AgentDelete from './components/agent/delete';
+
 import Users from './components/user/index';
+import UserForm from './components/user/form';
+import UserDelete from './components/user/delete';
 
 import './components/bundle.scss';
 import './utils';
@@ -43,8 +48,14 @@ ReactDOM.render(
           <IndexRoute name="agents" component={Agents} />
           <Route name="agents-new"  path="new" component={AgentForm} />
           <Route name="agents-edit" path=":id" component={AgentForm} />
+          <Route name="agents-delete" path=":id/delete" component={AgentDelete} />
         </Route>
-        <Route path="/users" component={Users} />
+        <Route path="/users">
+          <IndexRoute name="users" component={Users} />
+          <Route name="users-new"  path="new" component={UserForm} />
+          <Route name="users-edit" path=":id" component={UserForm} />
+          <Route name="users-delete" path=":id/delete" component={UserDelete} />
+        </Route>
       </Route>
     </Router>
   </Provider>

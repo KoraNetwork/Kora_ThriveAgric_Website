@@ -16,12 +16,10 @@ export function upsert(data = {}) {
   const body = new FormData();
   let method = 'post';
 
-  body.append('role', 'agent');
+  body.append('role', 'user');
   body.append('emailAddress', data.emailAddress);
   body.append('firstName', data.firstName);
   body.append('lastName', data.lastName);
-  body.append('phoneNumber', data.phoneNumber);
-  body.append('phoneStatus', data.phoneStatus);
 
   if (data.password) body.append('password','secret');
 

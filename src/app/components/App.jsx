@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import {connect} from 'react-redux';
 import Header from './common/Header';
-import Navigation from './common/navigation'
+import Navigation from './common/navigation';
 
 class App extends React.Component {
 
