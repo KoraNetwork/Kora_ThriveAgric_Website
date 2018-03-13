@@ -87,7 +87,7 @@ class ChangePassword extends React.Component {
 
               <FormGroup>
                 {errors['currentPassword'] && (
-                  <Label>
+                  <Label className="error">
                     {errors['currentPassword']}
                   </Label>
                 )}
@@ -101,7 +101,7 @@ class ChangePassword extends React.Component {
 
               <FormGroup>
                 {errors['newPassword'] && (
-                  <Label>
+                  <Label className="error">
                   {errors['newPassword']}
                   </Label>
                 )}
@@ -115,7 +115,7 @@ class ChangePassword extends React.Component {
 
               <FormGroup>
                 {errors['confirmNewPassword'] && (
-                  <Label>
+                  <Label className="error">
                     {errors['confirmNewPassword']}
                   </Label>
                 )}
@@ -127,7 +127,7 @@ class ChangePassword extends React.Component {
                   onChange={this.handleChange} />
               </FormGroup>
             </FormGroup>
-            <Button type="submit">CHANGE</Button>
+            <Button type="submit" color="primary" disabled={objectHasAnyProps(errors)} >CHANGE</Button>
           </form>
         </div>
       </div>

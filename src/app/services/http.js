@@ -38,7 +38,9 @@ let exec = function(config = {}){
 
   const sessionToken = Cookies.get('sessionToken');
   if(sessionToken) xhr.setRequestHeader('Session-Token', sessionToken);
-  for (let key in config.headers) { xhr.setRequestHeader(key, config.headers[key]) }
+  if (objectHasAnyProps(config.headers)) {
+    for (let key in config.headers) { xhr.setRequestHeader(key, config.headers[key]) }
+  }
 
   xhr.send(config.body);
 

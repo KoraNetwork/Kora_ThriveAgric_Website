@@ -127,16 +127,18 @@ class FarmerForm extends React.Component {
               </FormGroup>
             </Col>
           </Row>
-          <Row>
-            <Col {...leftColProps}>
-              <Button color="danger" type="button" onClick={router.push.bind(this, `/farmers/${farmer.id}/delete`)}>DELETE FARMER</Button>
-            </Col>
-            <Col md={3}>
-              <FormGroup>
+          {farmer.id && (
+            <Row>
+              <Col {...leftColProps}>
+                <Button color="danger" type="button" onClick={router.push.bind(this, `/farmers/${farmer.id}/delete`)}>DELETE FARMER</Button>
+              </Col>
+              <Col md={3}>
+                <FormGroup>
 
-              </FormGroup>
-            </Col>
-          </Row>
+                </FormGroup>
+              </Col>
+            </Row>
+          )}
           {/*<Row>*/}
             {/*<Col {...leftColProps}>*/}
               {/*<Label>securityQuestions</Label>*/}

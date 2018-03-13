@@ -5,37 +5,27 @@ import {
   FormGroup,
   Input,
   Button,
-  Row,
+  Label,
 } from 'reactstrap'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { faEye } from '@fortawesome/fontawesome-free-solid'
 
 import { login } from '../../actions/sessions'
+import { handleChange } from './actions'
 
 class Login extends React.Component {
 
   state = {
-    emailAddress: '',
-    password: '',
-    passwordType: true,
+    passwordIsVisible: false
   };
 
   togglePassword = () => {
-    this.setState({ passwordType: !this.state.passwordType })
-  };
-
-  handleChange = e => {
-    this.setState({ [e.target.name]: e.target.value })
-  };
-
-  handleSubmit = e => {
-    e.preventDefault();
-    login(this.state);
+    this.setState({ passwordIsVisible: !this.state.passwordIsVisible })
   };
 
   render() {
-
-    const { currentUser } = this.props;
+    const { passwordIsVisible } = this.state;
+    const { global: { isLoading }, loginForm: { emailAddress, password, errors } } = this.props;
 
     return(
       <div className="login-page">
@@ -43,17 +33,24 @@ class Login extends React.Component {
 
         </div>
         <div  className="login-block">
-          <form onSubmit={this.handleSubmit}>
+          <form onSubmit={login} className="form">
+            <h2>ENTER YOUR LOGIN <br/> CREDENTIALS</h2>
             <FormGroup>
-              <h2>ENTER YOUR LOGIN <br/> CREDENTIALS</h2>
-              <Input type="text" name="emailAddress" placeholder="Email" onChange={this.handleChange}/>
-              <div className={currentUser.errors ? "error" : "none"}>Invalid email and password combination</div>
-              <Input type={this.state.passwordType ? "password" : "text"} name="password" placeholder="Password" onChange={this.handleChange}/>
-                <div className="toggle-password">
-                  <FontAwesomeIcon icon={faEye} onMouseDown={this.togglePassword} onMouseUp={this.togglePassword}/>
-                </div>
+              {errors['emailAddress'] && (
+                <Label className="error">{errors['emailAddress']}</Label>
+              )}
+              <Input type="text" name="emailAddress" placeholder="Email" onChange={handleChange}/>
             </FormGroup>
-            <Button type="submit">LOGIN</Button>
+            <FormGroup>
+              {errors['password'] && (
+                <Label className="error">{errors['password']}</Label>
+              )}
+              <Input type={passwordIsVisible ? "text" : "password"} name="password" placeholder="Password" onChange={handleChange}/>
+              <div className="toggle-password">
+                <FontAwesomeIcon icon={faEye} onMouseDown={this.togglePassword} onMouseUp={this.togglePassword}/>
+              </div>
+            </FormGroup>
+            <Button type="submit" color="primary" disabled={!emailAddress || !password || isLoading}>LOGIN</Button>
             <br />
             <Link to="/forgot_password">Forgot Password?</Link>
           </form>
