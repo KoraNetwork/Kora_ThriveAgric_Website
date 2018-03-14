@@ -7,6 +7,7 @@ import App from './components/App';
 import Login from './components/login/index';
 import ChangePass from './components/change-password';
 import ForgotPass from './components/forgot-password';
+import RestorePassword from './components/restore-password';
 
 import Transactions from './components/transaction/index';
 import Transaction from './components/transaction/show';
@@ -35,7 +36,6 @@ ReactDOM.render(
       <Route path="/" component={App} onEnter={checkSession}>
         <Route path="/login" component={Login} />
         <Route path="/change-password" component={ChangePass} />
-        <Route path="/forgot_password" component={ForgotPass} />
         <Route path="/transactions" component={Transactions} />
         <Route path="/transaction/:id" component={Transaction} />
         <Route path="/farmers">
@@ -57,6 +57,8 @@ ReactDOM.render(
           <Route name="users-delete" path=":id/delete" component={UserDelete} />
         </Route>
       </Route>
+      <Route path="/forgot-password" component={ForgotPass} />
+      <Route path="/restore-password/:token" component={RestorePassword} />
     </Router>
   </Provider>
   , document.getElementById('react-root'));

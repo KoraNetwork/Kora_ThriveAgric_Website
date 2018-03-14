@@ -1,13 +1,14 @@
 import React from 'react';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
 import {
   FormGroup,
-  FormControl,
-  ControlLabel,
+  Input,
+  Label,
   Button
-} from 'react-bootstrap'
+} from 'reactstrap'
 
-import { updatePassword } from '../../services/sessions'
+import { forgotPassword } from '../../services/sessions'
 
 class ForgotPass extends React.Component {
 
@@ -16,12 +17,49 @@ class ForgotPass extends React.Component {
     errors: {}
   };
 
+  handleChange = e => {
+    const { errors } = this.state;
+    this.setState({ [e.target.name]: e.target.value, errors: { ...errors, [e.target.name]: '' } })
+  };
+
+  validate = () => {
+    const { emailAddress } = this.state;
+    let hasErrors;
+    let errors = {};
+
+    if(!emailAddress) {
+      errors.currentPassword = '*required';
+      hasErrors = true
+    }
+    this.setState({ errors });
+    return hasErrors
+  };
+
+  handleSubmit = e => {
+    e.preventDefault();
+    const { emailAddress } = this.state;
+    const hasErrors = this.validate();
+
+    if (hasErrors) return;
+
+    forgotPassword(emailAddress)
+      .success(res => {
+        this.setState({
+            emailAddress: ''
+        });
+        browserHistory.push('/login');
+      })
+      .error(res => {
+        this.setState({ errors: { emailAddress: res.error } })
+      })
+  };
+
 
   render() {
     const {errors} = this.state;
 
     return(
-      <div className="login-page">
+      <div style={{textAlign: 'center'}} className="login-page">
         <div className="logo-block">
 
         </div>
@@ -32,19 +70,19 @@ class ForgotPass extends React.Component {
 
               <FormGroup>
                 {errors['emailAddress'] && (
-                  <ControlLabel>
+                  <Label>
                     {errors['emailAddress']}
-                  </ControlLabel>
+                  </Label>
                 )}
-                <FormControl
+                <Input
                   type="text"
                   name="emailAddress"
                   placeholder="Plase enter registered email"
-                  className={ errors['currentPassword'] ? 'error' : '' }
+                  className={ errors['emailAddress'] ? 'error' : '' }
                   onChange={this.handleChange} />
               </FormGroup>
             </FormGroup>
-            <Button type="submit">SEND LINK</Button>
+            <Button type="submit" color="primary" disabled={!this.state.emailAddress} >SEND LINK</Button>
           </form>
         </div>
       </div>

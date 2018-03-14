@@ -36,3 +36,22 @@ export function updatePassword(pw, newPw) {
 
   return http.put({ url, body })
 }
+
+export function forgotPassword(email) {
+  const url = `${apiURL}/passwords/forgot`;
+  const body = new FormData();
+
+  body.append('emailAddress', email);
+
+  return http.post({url, body})
+}
+
+export function restorePassword(newPw, token) {
+  const url = `${apiURL}/passwords/restore`;
+  const body = new FormData();
+
+  body.append('newPassword', newPw);
+  body.append('token', token);
+
+  return http.put({ url, body })
+}

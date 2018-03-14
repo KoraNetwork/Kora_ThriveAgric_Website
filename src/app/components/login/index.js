@@ -52,7 +52,7 @@ class Login extends React.Component {
             </FormGroup>
             <Button type="submit" color="primary" disabled={!emailAddress || !password || isLoading}>LOGIN</Button>
             <br />
-            <Link to="/forgot_password">Forgot Password?</Link>
+            <Link to="/forgot-password">Forgot Password?</Link>
           </form>
         </div>
       </div>
