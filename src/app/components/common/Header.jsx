@@ -14,7 +14,7 @@ class Header extends React.Component {
 
     return (
       <header>
-        <img src={Logo} className="logo" />
+        <img src={'/' + Logo} className="logo" />
         {currentUser.id && (
           <div className="current-user">
             <div className="full-name">

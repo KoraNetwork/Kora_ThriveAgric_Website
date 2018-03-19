@@ -8,7 +8,7 @@ import {
 } from 'reactstrap'
 
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/fontawesome-free-solid';
+import { faSearch, faSpinner } from '@fortawesome/fontawesome-free-solid';
 
 import SortableTH from '../common/sortableTH';
 import * as agentsActions from './actions';
@@ -28,10 +28,14 @@ class Agents extends React.Component {
         <div className="top-block">
           <h2>AGENT MENAGEMENT</h2>
           <div className="search-block">
-            <Input className="search-input"/>
-            <Button>SEARCH</Button>
-            <Button>IMPORT AGENTS</Button>
-            <Button onClick={router.push.bind(this, 'agents/new')}>ADD AGENT</Button>
+            <Input className="search-input"
+                   value={agents.filters.emailAddress}
+                   onChange={e => agentsActions.updateFilters([{ emailAddress: e.target.value }])}/>
+            <div className="loadingBlock">
+              <FontAwesomeIcon className={this.props.global.isLoading ? "" : "none"} size="2x" pulse={true} icon={faSpinner} />
+            </div>
+            <Button color="primary">IMPORT AGENTS</Button>
+            <Button color="primary" onClick={router.push.bind(this, 'agents/new')}>ADD AGENT</Button>
           </div>
         </div>
 
@@ -58,7 +62,7 @@ class Agents extends React.Component {
                   <td>{agent.phoneNumber}</td>
                   <td>{agent.status}</td>
                   <td>{agent.businessName}</td>
-                  <td>{agent.businesAddress}</td>
+                  <td>{agent.businessAddress}</td>
                   <td>
                     <Link to={`/agents/${agent.id}`}><FontAwesomeIcon icon={faSearch} /></Link>
                   </td>

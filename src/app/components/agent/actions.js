@@ -21,15 +21,21 @@ const { dispatch } = store;
 export function fetch() {
   const { filters } = store.getState().agents;
 
-  getAgents(filters)
-    .success(res => dispatch({ type: SET, agents: res.users || [], count: res.count }));
+  if(window.getAgentsTimer) clearTimeout(window.getAgentsTimer);
+
+  window.getAgentsTimer = setTimeout(function () {
+    getAgents(filters)
+      .success(res => dispatch({ type: SET, agents: res.users || [], count: res.count }));
+  }, 400)
 }
 
 export function updateFilters(filters = []) {
   let hash = {};
   filters.forEach(item => Object.keys(item).forEach(key => hash[key] = item[key]));
 
-  dispatch({ type: UPDATE_FILTERS, filters: { ...hash, page: 1 }})
+  Promise
+    .resolve(dispatch({ type: UPDATE_FILTERS, filters: { ...hash, page: 1 }}))
+    .then(fetch)
 }
 
 export function fetchOne(id) {
@@ -71,11 +77,11 @@ const validateAgent = agent => {
   let hasErrors = false;
 
   if (!agent.emailAddress) {
-    errors.emailAddress = 'is required';
+    errors.emailAddress = 'Email is required!';
     hasErrors = true
   }
   if (!agent.phoneNumber) {
-    errors.phoneNumber = 'is required';
+    errors.phoneNumber = 'Phone Number is required!';
     hasErrors = true
   }
   if (agent.emailAddress && !agent.emailAddress.isEmail()) {
@@ -87,7 +93,27 @@ const validateAgent = agent => {
     hasErrors = true
   }
   if (!agent.firstName) {
-    errors.firstName = 'is required';
+    errors.firstName = 'First Name is required!';
+    hasErrors = true
+  }
+
+  if (!agent.bankName) {
+    errors.bankName = 'Bank Name is required!';
+    hasErrors = true
+  }
+
+  if (agent.bankName.lenght > 32){
+    errors.bankName = 'Bank Name is required!';
+    hasErrors = true
+  }
+
+  if (!agent.bankRoutingNumber) {
+    errors.bankRoutingNumber = 'Bank Routing Number is required!'
+    hasErrors = true
+  }
+
+  if (!agent.acountNumber) {
+    errors.acountNumber = 'Acount Number is reqired!'
     hasErrors = true
   }
 

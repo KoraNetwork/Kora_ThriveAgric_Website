@@ -6,7 +6,8 @@ import {
   Input,
   Label,
   FormGroup,
-  Button
+  Button,
+  FormFeedback
 } from 'reactstrap'
 import {
   fetchOne,
@@ -37,6 +38,7 @@ class FarmerForm extends React.Component {
     return(
       <div className="layout">
         <form onSubmit={submitFarmer} className="form" autoComplete="off">
+          <h2 style={{marginTop: 30}}>{farmer.id ? "FARMER DETAIL" : "CREATE FARMER"}</h2>
           {farmer.id && (
             <Row style={{marginTop: 30}}>
               <Col {...leftColProps}>
@@ -47,13 +49,14 @@ class FarmerForm extends React.Component {
               </Col>
             </Row>
           )}
-          <Row style={{margin: '30 auto'}}>
+          <Row style={ farmer.id ? {} : {marginTop: 30}}>
             <Col {...leftColProps}>
               <Label>Email address</Label>
             </Col>
             <Col md={3}>
               <FormGroup>
                 <Input name="emailAddress" value={farmer.emailAddress} onChange={handleChange} className={farmer.errors['emailAddress'] ? 'error' : ''} />
+                <FormFeedback className="error">{farmer.errors['emailAddress']}</FormFeedback>
               </FormGroup>
             </Col>
           </Row>
@@ -64,6 +67,7 @@ class FarmerForm extends React.Component {
             <Col md={3}>
               <FormGroup>
                 <Input name="firstName" value={farmer.firstName} onChange={handleChange} className={farmer.errors['firstName'] ? 'error' : ''} />
+                <FormFeedback className="error">{farmer.errors['firstName']}</FormFeedback>
               </FormGroup>
             </Col>
           </Row>
@@ -84,16 +88,27 @@ class FarmerForm extends React.Component {
             <Col md={3}>
               <FormGroup>
                 <Input name="phoneNumber" value={farmer.phoneNumber} onChange={handleChange} className={farmer.errors['phoneNumber'] ? 'error' : ''} />
+                <FormFeedback className="error">{farmer.errors['phoneNumber']}</FormFeedback>
               </FormGroup>
             </Col>
           </Row>
+          {
+            <Row>
+              <Col {...leftColProps}>
+                <Label>Phone Status</Label>
+              </Col>
+              <Col md={3}>
+                {farmer.phoneStatus ? "Active" : "Unconfirmed"}
+              </Col>
+            </Row>
+          }
           <Row>
             <Col {...leftColProps}>
-              <Label>Phone Status</Label>
+              <Label></Label>
             </Col>
             <Col md={3}>
               <FormGroup>
-                <Input name="phoneStatus" value={farmer.phoneStatus} onChange={handleChange} className={farmer.errors['phoneStatus'] ? 'error' : ''} />
+                <Button color="primary">REQUEST CONFIRMATION</Button>
               </FormGroup>
             </Col>
           </Row>
@@ -104,6 +119,16 @@ class FarmerForm extends React.Component {
             <Col md={3}>
               <FormGroup>
                 <Input name="phoneConfirmationCode" value={farmer.phoneConfirmationCode} onChange={handleChange} className={farmer.errors['phoneConfirmationCode'] ? 'error' : ''} />
+              </FormGroup>
+            </Col>
+          </Row>
+          <Row>
+            <Col {...leftColProps}>
+              <Label></Label>
+            </Col>
+            <Col md={3}>
+              <FormGroup>
+                <Button color="primary">CONFIRM PHONE</Button>
               </FormGroup>
             </Col>
           </Row>
@@ -123,7 +148,10 @@ class FarmerForm extends React.Component {
             </Col>
             <Col md={3}>
               <FormGroup>
-                <Input name="payrollStatus" value={farmer.payrollStatus} onChange={handleChange} className={farmer.errors['payrollStatus'] ? 'error' : ''} />
+                <Input type="select" name="payrollStatus" value={farmer.payrollStatus} onChange={handleChange} className={farmer.errors['payrollStatus'] ? 'error' : ''}>
+                  <option>Active</option>
+                  <option>Inactive</option>
+                </Input>
               </FormGroup>
             </Col>
           </Row>

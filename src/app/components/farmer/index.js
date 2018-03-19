@@ -7,7 +7,7 @@ import {
   Table,
 } from 'reactstrap'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/fontawesome-free-solid';
+import { faSearch, faSpinner } from '@fortawesome/fontawesome-free-solid';
 
 import SortableTH from '../common/sortableTH';
 import * as farmersActions from './actions';
@@ -29,9 +29,11 @@ class Farmers extends React.Component {
             <Input className="search-input"
                    value={farmers.filters.emailAddress}
                    onChange={e => farmersActions.updateFilters([{ emailAddress: e.target.value }])} />
-            <Button>SEARCH</Button>
-            <Button>IMPORT FARMERS</Button>
-            <Button onClick={router.push.bind(this, 'farmers/new')}>ADD FARMER</Button>
+             <div className="loadingBlock">
+               <FontAwesomeIcon className={this.props.global.isLoading ? "" : "none"} size="2x" pulse={true} icon={faSpinner} />
+             </div>
+            <Button color="primary" >IMPORT FARMERS</Button>
+            <Button color="primary" onClick={router.push.bind(this, 'farmers/new')}>ADD FARMER</Button>
           </div>
         </div>
 
@@ -39,7 +41,7 @@ class Farmers extends React.Component {
           <thead>
             <tr>
               <th>Farmer ID</th>
-              <th><SortableTH update={farmersActions.updateFilters} column='firstName'>First Name</SortableTH></th>
+              <th><SortableTH update={farmersActions.updateFilters} column='firstName'>Name</SortableTH></th>
               <th><SortableTH update={farmersActions.updateFilters} column='phoneNumber'>Phone Number</SortableTH></th>
               <th>Status</th>
               <th>Payroll Status</th>

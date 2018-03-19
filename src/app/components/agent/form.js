@@ -6,7 +6,8 @@ import {
   Input,
   Label,
   FormGroup,
-  Button
+  Button,
+  FormFeedback
 } from 'reactstrap'
 import {
   fetchOne,
@@ -37,6 +38,7 @@ class AgentForm extends React.Component {
     return(
       <div className="layout">
         <form onSubmit={submitAgent} className="form" autoComplete="off">
+          <h2 style={{marginTop: 30}}>{agent.id ? "AGENT DETAIL" : "CREATE AGENT"}</h2>
           {agent.id && (
             <Row style={{marginTop: 30}}>
               <Col {...leftColProps}>
@@ -47,13 +49,14 @@ class AgentForm extends React.Component {
               </Col>
             </Row>
           )}
-          <Row style={{marginTop: 30}}>
+          <Row style={ agent.id ? {} : {marginTop: 30}}>
             <Col {...leftColProps}>
-              <Label>Email address</Label>
+              <Label>Email Address</Label>
             </Col>
             <Col md={3}>
               <FormGroup>
                 <Input name="emailAddress" value={agent.emailAddress} onChange={handleChange} className={agent.errors['emailAddress'] ? 'error' : ''} />
+                <FormFeedback className="error">{agent.errors['emailAddress']}</FormFeedback>
               </FormGroup>
             </Col>
           </Row>
@@ -64,6 +67,7 @@ class AgentForm extends React.Component {
             <Col md={3}>
               <FormGroup>
                 <Input name="firstName" value={agent.firstName} onChange={handleChange} className={agent.errors['firstName'] ? 'error' : ''} />
+                <FormFeedback className="error">{agent.errors['firstName']}</FormFeedback>
               </FormGroup>
             </Col>
           </Row>
@@ -84,6 +88,7 @@ class AgentForm extends React.Component {
             <Col md={3}>
               <FormGroup>
                 <Input name="phoneNumber" value={agent.phoneNumber} onChange={handleChange} className={agent.errors['phoneNumber'] ? 'error' : ''} />
+                <FormFeedback className="error">{agent.errors['phoneNumber']}</FormFeedback>
               </FormGroup>
             </Col>
           </Row>
@@ -93,7 +98,17 @@ class AgentForm extends React.Component {
             </Col>
             <Col md={3}>
               <FormGroup>
-                <Input name="phoneStatus" value={agent.phoneStatus} onChange={handleChange} className={agent.errors['phoneStatus'] ? 'error' : ''} />
+                {agent.phoneStatus ? "Active" : "Unconfirmed"}
+              </FormGroup>
+            </Col>
+          </Row>
+          <Row>
+            <Col {...leftColProps}>
+              <Label></Label>
+            </Col>
+            <Col md={3}>
+              <FormGroup>
+                <Button color="primary">REQUEST CONFIRMATION</Button>
               </FormGroup>
             </Col>
           </Row>
@@ -104,6 +119,16 @@ class AgentForm extends React.Component {
             <Col md={3}>
               <FormGroup>
                 <Input name="phoneConfirmationCode" value={agent.phoneConfirmationCode} onChange={handleChange} className={agent.errors['phoneConfirmationCode'] ? 'error' : ''} />
+              </FormGroup>
+            </Col>
+          </Row>
+          <Row>
+            <Col {...leftColProps}>
+              <Label></Label>
+            </Col>
+            <Col md={3}>
+              <FormGroup>
+                <Button color="primary">CONFIRM PHONE</Button>
               </FormGroup>
             </Col>
           </Row>
@@ -124,6 +149,7 @@ class AgentForm extends React.Component {
             <Col md={3}>
               <FormGroup>
                 <Input name="bankName" value={agent.bankName} onChange={handleChange} className={agent.errors['bankName'] ? 'error' : ''} />
+                <FormFeedback className="error">{agent.errors['bankName']}</FormFeedback>
               </FormGroup>
             </Col>
           </Row>
@@ -134,6 +160,7 @@ class AgentForm extends React.Component {
             <Col md={3}>
               <FormGroup>
                 <Input name="bankRoutingNumber" value={agent.bankRoutingNumber} onChange={handleChange} className={agent.errors['bankRoutingNumber'] ? 'error' : ''} />
+                <FormFeedback className="error">{agent.errors['bankRoutingNumber']}</FormFeedback>
               </FormGroup>
             </Col>
           </Row>
@@ -144,6 +171,7 @@ class AgentForm extends React.Component {
             <Col md={3}>
               <FormGroup>
                 <Input name="acountNumber" value={agent.acountNumber} onChange={handleChange} className={agent.errors['acountNumber'] ? 'error' : ''} />
+                <FormFeedback className="error">{agent.errors['acountNumber']}</FormFeedback>
               </FormGroup>
             </Col>
           </Row>
@@ -198,7 +226,7 @@ class AgentForm extends React.Component {
             {/*</Col>*/}
           {/*</Row>*/}
           <Row style={{justifyContent:'center'}}>
-            <Button type="submit">SUBMIT</Button>
+            <Button color="primary" type="submit">SUBMIT</Button>
           </Row>
         </form>
       </div>

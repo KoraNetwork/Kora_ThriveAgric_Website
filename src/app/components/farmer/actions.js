@@ -77,11 +77,11 @@ const validateFarmer = farmer => {
   let hasErrors = false;
 
   if (!farmer.emailAddress) {
-    errors.emailAddress = 'is required';
+    errors.emailAddress = 'Email is required!';
     hasErrors = true
   }
   if (!farmer.phoneNumber) {
-    errors.phoneNumber = 'is required';
+    errors.phoneNumber = 'Phone Number is required!';
     hasErrors = true
   }
   if (farmer.emailAddress && !farmer.emailAddress.isEmail()) {
@@ -93,7 +93,7 @@ const validateFarmer = farmer => {
     hasErrors = true
   }
   if (!farmer.firstName) {
-    errors.firstName = 'is required';
+    errors.firstName = 'First Name is required!';
     hasErrors = true
   }
 
