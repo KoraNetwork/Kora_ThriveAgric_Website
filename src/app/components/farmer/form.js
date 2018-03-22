@@ -23,6 +23,15 @@ const leftColProps = {
 
 class FarmerForm extends React.Component {
 
+  questions = [
+    'What was your childhood nickname',
+    'What is the first name of your best friend',
+    'What is your mother’s maiden name?',
+    'What is the name of your favorite sports team?',
+    'Who is your favorite singer?',
+    'What is your passport number?'
+  ];
+
   componentDidMount() {
     const { params: { id } } = this.props;
     if (id) fetchOne(id)
@@ -155,6 +164,61 @@ class FarmerForm extends React.Component {
               </FormGroup>
             </Col>
           </Row>
+
+          <h3 style={{marginTop: 30}}>Security Question</h3>
+          <Row style={{marginTop: 30}}>
+            <Col {...leftColProps}>
+              <Label>Question 1</Label>
+            </Col>
+            <Col md={3}>
+              <FormGroup>
+                <Input name="question1" type="select" value={farmer.question1} onChange={handleChange} className={farmer.errors['question1'] ? 'error' : ''}>
+                  {this.questions.map(question => (
+                    <option>{question}</option>
+                  ))}
+                </Input>
+                <FormFeedback className="error">{farmer.errors['question1']}</FormFeedback>
+              </FormGroup>
+            </Col>
+          </Row>
+          <Row>
+            <Col {...leftColProps}>
+              <Label>Answer</Label>
+            </Col>
+            <Col md={3}>
+              <FormGroup>
+                <Input name="answer1" value={farmer.answer1} onChange={handleChange} className={farmer.errors['answer1'] ? 'error' : ''} />
+                <FormFeedback className="error">{farmer.errors['answer1']}</FormFeedback>
+              </FormGroup>
+            </Col>
+          </Row>
+          <Row>
+            <Col {...leftColProps}>
+              <Label>Question 2</Label>
+            </Col>
+            <Col md={3}>
+              <FormGroup>
+                <Input name="question2" type="select" value={farmer.question2} onChange={handleChange} className={farmer.errors['question2'] ? 'error' : ''}>
+                  {this.questions.map(question => (
+                    <option>{question}</option>
+                  ))}
+                </Input>
+                <FormFeedback className="error">{farmer.errors['question2']}</FormFeedback>
+              </FormGroup>
+            </Col>
+          </Row>
+          <Row>
+            <Col {...leftColProps}>
+              <Label>Answer</Label>
+            </Col>
+            <Col md={3}>
+              <FormGroup>
+                <Input name="answer2" value={farmer.answer2} onChange={handleChange} className={farmer.errors['answer2'] ? 'error' : ''} />
+                <FormFeedback className="error">{farmer.errors['answer2']}</FormFeedback>
+              </FormGroup>
+            </Col>
+          </Row>
+
           {farmer.id && (
             <Row>
               <Col {...leftColProps}>
@@ -167,16 +231,7 @@ class FarmerForm extends React.Component {
               </Col>
             </Row>
           )}
-          {/*<Row>*/}
-            {/*<Col {...leftColProps}>*/}
-              {/*<Label>securityQuestions</Label>*/}
-            {/*</Col>*/}
-            {/*<Col md={3}>*/}
-              {/*<FormGroup>*/}
-                {/*<Input name="securityQuestions" value={farmer.securityQuestions} onChange={handleChange} />*/}
-              {/*</FormGroup>*/}
-            {/*</Col>*/}
-          {/*</Row>*/}
+
           <Row style={{justifyContent:'center'}}>
             <Button type="submit" color="primary">SUBMIT</Button>
           </Row>

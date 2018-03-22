@@ -24,7 +24,7 @@ function Navigation() {
         <div className="vertical-line" />
         <Link to="/users">USERS</Link>
         <div className="vertical-line" />
-        <Link to="/banck_accounts">BANK ACCONTS</Link>
+        <Link to="/banks">BANK ACCONTS</Link>
         <div className="vertical-line" />
         <Link to="/money_transfer">MONEY TRANSFER</Link>
         <div className="vertical-line" />

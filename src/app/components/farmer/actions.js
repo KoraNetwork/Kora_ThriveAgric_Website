@@ -96,6 +96,18 @@ const validateFarmer = farmer => {
     errors.firstName = 'First Name is required!';
     hasErrors = true
   }
+  if (!farmer.question1) {
+    errors.question1 = 'Question is required!';
+  }
+  if (!farmer.question2) {
+    errors.question2 = 'Question is required!';
+  }
+  if (!farmer.answer1) {
+    errors.answer1 = 'Answer is required!'
+  }
+  if (!farmer.answer2) {
+    errors.answer2 = 'Answer is required!'
+  }
 
   dispatch({ type: SET_VALIDATION_ERRORS, errors });
   return hasErrors

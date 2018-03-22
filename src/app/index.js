@@ -24,6 +24,9 @@ import Users from './components/user/index';
 import UserForm from './components/user/form';
 import UserDelete from './components/user/delete';
 
+import Banks from './components/bank/index';
+import BankForm from './components/bank/form';
+
 import './components/bundle.scss';
 import './utils';
 import store from './store'
@@ -55,6 +58,11 @@ ReactDOM.render(
           <Route name="users-new"  path="new" component={UserForm} />
           <Route name="users-edit" path=":id" component={UserForm} />
           <Route name="users-delete" path=":id/delete" component={UserDelete} />
+        </Route>
+        <Route path="/banks">
+          <IndexRoute name="banks" component={Banks} />
+          <Route name="banks-new"  path="new" component={BankForm} />
+          <Route name="banks-edit" path=":id" component={BankForm} />
         </Route>
       </Route>
       <Route path="/forgot-password" component={ForgotPass} />

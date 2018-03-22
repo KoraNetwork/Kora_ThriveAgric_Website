@@ -21,15 +21,21 @@ const { dispatch } = store;
 export function fetch() {
   const { filters } = store.getState().users;
 
-  getUsers(filters)
-    .success(res => dispatch({ type: SET, users: res.users || [], count: res.count }));
+  if(window.getUsersTimer) clearTimeout(window.getUsersTimer);
+
+  window.getUsersTimer = setTimeout(function () {
+    getUsers(filters)
+      .success(res => dispatch({ type: SET, users: res.users || [], count: res.count }));
+  }, 400)
 }
 
 export function updateFilters(filters = []) {
   let hash = {};
   filters.forEach(item => Object.keys(item).forEach(key => hash[key] = item[key]));
 
-  dispatch({ type: UPDATE_FILTERS, filters: { ...hash, page: 1 }})
+  Promise
+    .resolve(dispatch({ type: UPDATE_FILTERS, filters: { ...hash, page: 1 }}))
+    .then(fetch)
 }
 
 export function fetchOne(id) {
@@ -71,7 +77,7 @@ const validateUser = user => {
   let hasErrors = false;
 
   if (!user.emailAddress) {
-    errors.emailAddress = 'is required';
+    errors.emailAddress = 'Email is required!';
     hasErrors = true
   }
   if (user.emailAddress && !user.emailAddress.isEmail()) {
@@ -79,7 +85,7 @@ const validateUser = user => {
     hasErrors = true
   }
   if (!user.firstName) {
-    errors.firstName = 'is required';
+    errors.firstName = 'First Name is required!';
     hasErrors = true
   }
 

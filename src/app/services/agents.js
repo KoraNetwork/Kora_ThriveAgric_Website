@@ -28,6 +28,10 @@ export function upsert(data = {}) {
   body.append('acountNumber', data.acountNumber);
   body.append('businessName', data.businessName);
   body.append('businessAddress', data.businessAddress);
+  body.append('question1', data.question1);
+  body.append('question2', data.question2);
+  body.append('answer1', data.answer1);
+  body.append('answer2', data.answer2);
 
   if (data.password) body.append('password','secret');
 

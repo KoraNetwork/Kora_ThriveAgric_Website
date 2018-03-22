@@ -6,7 +6,8 @@ import {
   Input,
   Label,
   FormGroup,
-  Button
+  Button,
+  FormFeedback
 } from 'reactstrap'
 import {
   fetchOne,
@@ -38,6 +39,7 @@ class UserForm extends React.Component {
     return(
       <div className="layout">
         <form onSubmit={submitUser} className="form" autoComplete="off">
+          <h2 style={{marginTop: 30}}>{user.id ? "USER DETAIL" : "CREATE USER"}</h2>
           {user.id && (
             <Row style={{marginTop: 30}}>
               <Col {...leftColProps}>
@@ -48,13 +50,14 @@ class UserForm extends React.Component {
               </Col>
             </Row>
           )}
-          <Row style={{marginTop: 30}}>
+          <Row style={ user.id ? {} : {marginTop: 30}}>
             <Col {...leftColProps}>
               <Label>Email address</Label>
             </Col>
             <Col md={3}>
               <FormGroup>
                 <Input name="emailAddress" value={user.emailAddress} onChange={handleChange} className={user.errors['emailAddress'] ? 'error' : ''} />
+                <FormFeedback className="error">{user.errors['emailAddress']}</FormFeedback>
               </FormGroup>
             </Col>
           </Row>
@@ -65,6 +68,7 @@ class UserForm extends React.Component {
             <Col md={3}>
               <FormGroup>
                 <Input name="firstName" value={user.firstName} onChange={handleChange} className={user.errors['firstName'] ? 'error' : ''} />
+                <FormFeedback className="error">{user.errors['firstName']}</FormFeedback>
               </FormGroup>
             </Col>
           </Row>
@@ -89,7 +93,7 @@ class UserForm extends React.Component {
             </Col>
           </Row>
           <Row style={{justifyContent:'center'}}>
-            <Button type="submit">SUBMIT</Button>
+            <Button color="primary" type="submit">SUBMIT</Button>
           </Row>
         </form>
       </div>

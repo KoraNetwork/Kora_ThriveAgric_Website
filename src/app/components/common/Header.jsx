@@ -24,7 +24,7 @@ class Header extends React.Component {
                 <Link to="/change-password">Change Password</Link>
               </p>
             </div>
-            <Button className="logout" onClick={logout}>LOGOUT</Button>
+            <Button color="primary" className="logout" onClick={logout}>LOGOUT</Button>
           </div>
         )}
       </header>

@@ -23,6 +23,15 @@ const leftColProps = {
 
 class AgentForm extends React.Component {
 
+  questions = [
+    'What was your childhood nickname',
+    'What is the first name of your best friend',
+    'What is your mother’s maiden name?',
+    'What is the name of your favorite sports team?',
+    'Who is your favorite singer?',
+    'What is your passport number?'
+  ];
+
   componentDidMount() {
     const { params: { id } } = this.props;
     if (id) fetchOne(id)
@@ -205,6 +214,61 @@ class AgentForm extends React.Component {
               </FormGroup>
             </Col>
           </Row>
+
+          <h3 style={{marginTop: 30}}>Security Question</h3>
+          <Row style={{marginTop: 30}}>
+            <Col {...leftColProps}>
+              <Label>Question 1</Label>
+            </Col>
+            <Col md={3}>
+              <FormGroup>
+                <Input name="question1" type="select" value={agent.question1} onChange={handleChange} className={agent.errors['question1'] ? 'error' : ''}>
+                  {this.questions.map(question => (
+                    <option>{question}</option>
+                  ))}
+                </Input>
+                <FormFeedback className="error">{agent.errors['question1']}</FormFeedback>
+              </FormGroup>
+            </Col>
+          </Row>
+          <Row>
+            <Col {...leftColProps}>
+              <Label>Answer</Label>
+            </Col>
+            <Col md={3}>
+              <FormGroup>
+                <Input name="answer1" value={agent.answer1} onChange={handleChange} className={agent.errors['answer1'] ? 'error' : ''} />
+                <FormFeedback className="error">{agent.errors['answer1']}</FormFeedback>
+              </FormGroup>
+            </Col>
+          </Row>
+          <Row>
+            <Col {...leftColProps}>
+              <Label>Question 2</Label>
+            </Col>
+            <Col md={3}>
+              <FormGroup>
+                <Input name="question2" type="select" value={agent.question2} onChange={handleChange} className={agent.errors['question2'] ? 'error' : ''}>
+                  {this.questions.map(question => (
+                    <option>{question}</option>
+                  ))}
+                </Input>
+                <FormFeedback className="error">{agent.errors['question2']}</FormFeedback>
+              </FormGroup>
+            </Col>
+          </Row>
+          <Row>
+            <Col {...leftColProps}>
+              <Label>Answer</Label>
+            </Col>
+            <Col md={3}>
+              <FormGroup>
+                <Input name="answer2" value={agent.answer2} onChange={handleChange} className={agent.errors['answer2'] ? 'error' : ''} />
+                <FormFeedback className="error">{agent.errors['answer2']}</FormFeedback>
+              </FormGroup>
+            </Col>
+          </Row>
+
           <Row>
             <Col {...leftColProps}>
               <Button color="danger" type="button" onClick={router.push.bind(this, `/agents/${agent.id}/delete`)}>DELETE AGENT</Button>
@@ -215,16 +279,6 @@ class AgentForm extends React.Component {
               </FormGroup>
             </Col>
           </Row>
-          {/*<Row>*/}
-            {/*<Col {...leftColProps}>*/}
-              {/*<Label>securityQuestions</Label>*/}
-            {/*</Col>*/}
-            {/*<Col md={3}>*/}
-              {/*<FormGroup>*/}
-                {/*<Input name="securityQuestions" value={farmer.securityQuestions} onChange={handleChange} />*/}
-              {/*</FormGroup>*/}
-            {/*</Col>*/}
-          {/*</Row>*/}
           <Row style={{justifyContent:'center'}}>
             <Button color="primary" type="submit">SUBMIT</Button>
           </Row>

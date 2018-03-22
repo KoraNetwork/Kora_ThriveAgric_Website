@@ -1,11 +1,11 @@
 import React from 'react';
-import { connect } from 'react-redux'
-import {Link} from 'react-router'
+import { connect } from 'react-redux';
+import {Link} from 'react-router';
 import {
   Input,
   Button,
   Table,
-} from 'reactstrap'
+} from 'reactstrap';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { faSearch, faSpinner } from '@fortawesome/fontawesome-free-solid';
 

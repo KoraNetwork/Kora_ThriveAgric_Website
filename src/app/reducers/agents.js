@@ -16,7 +16,10 @@ const initialState = {
     bisinessName: '',
     bisinessAddress: '',
     agentStatus: '',
-    securityQuestions: [],
+    question1: 'What was your childhood nickname',
+    question2: 'What was your childhood nickname',
+    answer1: '',
+    answer2: '',
     errors: {}
   },
   count: 0

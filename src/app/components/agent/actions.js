@@ -96,25 +96,33 @@ const validateAgent = agent => {
     errors.firstName = 'First Name is required!';
     hasErrors = true
   }
-
   if (!agent.bankName) {
     errors.bankName = 'Bank Name is required!';
     hasErrors = true
   }
-
   if (agent.bankName.lenght > 32){
     errors.bankName = 'Bank Name is required!';
     hasErrors = true
   }
-
   if (!agent.bankRoutingNumber) {
     errors.bankRoutingNumber = 'Bank Routing Number is required!'
     hasErrors = true
   }
-
   if (!agent.acountNumber) {
     errors.acountNumber = 'Acount Number is reqired!'
     hasErrors = true
+  }
+  if (!agent.question1) {
+    errors.question1 = 'Question is required!';
+  }
+  if (!agent.question2) {
+    errors.question2 = 'Question is required!';
+  }
+  if (!agent.answer1) {
+    errors.answer1 = 'Answer is required!'
+  }
+  if (!agent.answer2) {
+    errors.answer2 = 'Answer is required!'
   }
 
   dispatch({ type: SET_VALIDATION_ERRORS, errors });

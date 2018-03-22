@@ -23,6 +23,10 @@ export function upsert(data = {}) {
   body.append('phoneNumber', data.phoneNumber);
   body.append('phoneStatus', data.phoneStatus);
   body.append('address', data.address);
+  body.append('question1', data.question1);
+  body.append('question2', data.question2);
+  body.append('answer1', data.answer1);
+  body.append('answer2', data.answer2);
 
   if (data.password) body.append('password','secret');
 

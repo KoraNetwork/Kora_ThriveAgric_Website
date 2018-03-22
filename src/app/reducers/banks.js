@@ -1,43 +1,29 @@
 const initialState = {
   items: [],
-  filters: {
-    page: 1,
-    perPage: 10,
-    role: 'farmer',
-    emailAddress: ''
-  },
+  filters: { page: 1, perPage: 10 },
   selected: {
     id: null,
-    firstName: '',
-    lastName: '',
-    emailAddress: '',
-    phoneNumber: '',
-    phoneStatus: '',
-    phoneConfirmationCode: '',
-    address: '',
-    payrollStatus: '',
-    question1: 'What was your childhood nickname',
-    question2: 'What was your childhood nickname',
-    answer1: '',
-    answer2: '',
+    bankName: '',
+    bankRoutingNumber: '',
+    acountNumber: '',
     errors: {}
   },
   count: 0
 };
 
-export const SET = 'FARMERS/SET';
-export const SET_SELECTED = 'FARMERS/SET_SELECTED';
-export const CLEAR = 'FARMERS/CLEAR';
-export const UPDATE_FILTERS = 'FARMERS/UPDATE_FILTERS';
-export const SET_VALIDATION_ERRORS = 'FARMERS/SET_VALIDATION_ERRORS';
-export const HANDLE_CHANGE = 'FARMERS/HANDLE_CHANGE';
-export const CLEAR_SELECTED = 'FARMERS/CLEAR_SELECTED';
+export const SET = 'BANKS/SET';
+export const SET_SELECTED = 'BANKS/SET_SELECTED';
+export const CLEAR = 'BANKS/CLEAR';
+export const UPDATE_FILTERS = 'BANKS/UPDATE_FILTERS';
+export const SET_VALIDATION_ERRORS = 'BANKS/SET_VALIDATION_ERRORS';
+export const HANDLE_CHANGE = 'BANKS/HANDLE_CHANGE';
+export const CLEAR_SELECTED = 'BANKS/CLEAR_SELECTED';
 
 export default function (state = initialState, action) {
 
   switch (action.type) {
     case SET:
-      return { ...state, items: action.farmers, count: action.count };
+      return { ...state, items: action.banks, count: action.count };
 
     case CLEAR:
       return { ...state, items: [] };
@@ -46,7 +32,7 @@ export default function (state = initialState, action) {
       return { ...state, filters: { ...state.filters, ...action.filters } };
 
     case SET_SELECTED:
-      return { ...state, selected: { ...state.selected, ...action.farmer } };
+      return { ...state, selected: { ...state.selected, ...action.bank } };
 
     case SET_VALIDATION_ERRORS:
       return { ...state, selected: { ...state.selected, errors: action.errors } };

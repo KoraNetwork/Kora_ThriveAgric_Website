@@ -7,7 +7,7 @@ import {
   Table
 } from 'reactstrap';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import { faPencilAlt, faTrash } from '@fortawesome/fontawesome-free-solid';
+import { faPencilAlt, faTrash, faSpinner } from '@fortawesome/fontawesome-free-solid';
 
 import SortableTH from '../common/sortableTH';
 import * as usersActions from './actions';
@@ -28,9 +28,13 @@ class Users extends React.Component {
         <div className="top-block">
           <h2>USERS MENAGEMENT</h2>
           <div className="search-block">
-            <Input className="search-input"/>
-            <Button>SEARCH</Button>
-            <Button onClick={router.push.bind(this, 'users/new')}>ADD USER</Button>
+            <Input className="search-input"
+                   value={users.filters.emailAddress}
+                   onChange={e => usersActions.updateFilters([{ emailAddress: e.target.value }])}/>
+             <div className="loadingBlock">
+               <FontAwesomeIcon className={this.props.global.isLoading ? "" : "none"} size="2x" pulse={true} icon={faSpinner} />
+             </div>
+            <Button color="primary" onClick={router.push.bind(this, 'users/new')}>ADD USER</Button>
           </div>
         </div>
 
